@@ -1,0 +1,22 @@
+.jumbotron {
+    background-image: url("./yosemite-merced.jpg");
+    background-size: cover;
+    color: white;
+}
+
+.display-4 {
+    font-family: fantasy;
+}
+
+.container .link-button {
+    background-color: green;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.link-button:hover {
+    box-shadow: 2px 2px rgb(43, 41, 41);
+}

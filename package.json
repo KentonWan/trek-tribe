@@ -1,7 +1,8 @@
 {
-  "name": "example-create-react-app-express",
+  "name": "trek-tribe",
   "version": "1.0.0",
   "scripts": {
+    "test": "export NODE_ENV=test && jasmine",
     "client": "cd client && npm run start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
@@ -9,9 +10,20 @@
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.3",
+    "firebase-admin": "^6.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
-    "concurrently": "^3.6.1"
+    "concurrently": "^3.6.1",
+    "jasmine": "^3.0.0",
+    "request": "^2.83.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KentonWan/trek-tribe"
   }
 }

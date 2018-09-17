@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route,Link } from 'react-router-dom';
 import './App.css';
+import Landing from './components/Landing.js';
 
 class App extends Component {
   state = {
@@ -14,7 +15,7 @@ class App extends Component {
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -24,10 +25,30 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+          <nav className="navbar navbar-expand-md fixed-top">
+            <div className="container text-center">
+              <img src={require('./trek_tribe_logo.png')} width="100" alt="logo" className="logo" />
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarResponsive">
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link className="link" to='/hikes'>Explore</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="link" to='/signUp'>Sign Up</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        
+        <div className="main-container">
+          <Route exact path="/" component={ Landing } />
+        </div>
+
+
         <p className="App-intro">
           {this.state.response}
         </p>
