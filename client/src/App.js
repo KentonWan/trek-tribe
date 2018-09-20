@@ -2,13 +2,32 @@ import React, { Component } from 'react';
 import { Route,Link } from 'react-router-dom';
 import './App.css';
 import Landing from './components/Landing.js';
+import SignUp from './components/SignUp.js';
+import SignIn from './components/SignIn.js';
+import SignOut from './components/SignOut.js';
+import Navigation from './components/Navigation.js';
+import { firebase } from './firebase';
+
+
+
 
 class App extends Component {
-  state = {
-    response: ''
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      response: '',
+      user: null,
+      userId: null,
 
+    };
+  }
+ 
   componentDidMount() {
+
+    firebase.auth.onAuthStateChanged(user => {
+      user ? this.setState({ user: user, userId: user.uid})
+      : this.setState({ user: null, userId: null});
+    })
     this.callApi()
       .then(res => this.setState({ response: res.express }))
       .catch(err => console.log(err));
@@ -22,30 +41,21 @@ class App extends Component {
 
     return body;
   };
+
+  setUser(currentUser){
+    this.setState({user: currentUser});
+    console.log(currentUser);
+  }
+
   render() {
     return (
       <div className="App">
-          <nav className="navbar navbar-expand-md fixed-top">
-            <div className="container text-center">
-              <img src={require('./trek_tribe_logo.png')} width="100" alt="logo" className="logo" />
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarResponsive">
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <Link className="link" to='/hikes'>Explore</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="link" to='/signUp'>Sign Up</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+        <Navigation user={this.state.user} />
         
         <div className="main-container">
           <Route exact path="/" component={ Landing } />
+          <Route path="/SignUp" component= { SignUp } />
+          <Route path="/SignIn" component = { SignIn } />
         </div>
 
 
