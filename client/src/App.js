@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { Route,Link } from 'react-router-dom';
 import './App.css';
+import { firebase } from './firebase';
+
 import Landing from './components/Landing.js';
 import SignUp from './components/SignUp.js';
 import SignIn from './components/SignIn.js';
 import SignOut from './components/SignOut.js';
 import Navigation from './components/Navigation.js';
-import { firebase } from './firebase';
+import HikesList from './components/HikesList.js';
+import Hike from './components/Hike.js';
+import Tribes from './components/Tribes.js';
+
+
 
 
 
@@ -28,6 +34,7 @@ class App extends Component {
       user ? this.setState({ user: user, userId: user.uid})
       : this.setState({ user: null, userId: null});
     })
+
     this.callApi()
       .then(res => this.setState({ response: res.express }))
       .catch(err => console.log(err));
@@ -56,6 +63,8 @@ class App extends Component {
           <Route exact path="/" component={ Landing } />
           <Route path="/SignUp" component= { SignUp } />
           <Route path="/SignIn" component = { SignIn } />
+          <Route path="/HikesList" component = { HikesList } />
+          <Route path="/hike/:id" component = { Hike } />
         </div>
 
 

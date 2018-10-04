@@ -5,6 +5,7 @@ import SignOut from './SignOut';
 import Landing from './Landing';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import HikesList from './HikesList';
 
 
 
@@ -25,7 +26,7 @@ const NavigationAuth = () =>
     <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-                <Link className="link" to='/hikes'>Explore</Link>
+                <Link className="link" to='/HikesList'>Explore</Link>
             </li>
             <li className="nav-item">
                 <SignOut />
@@ -37,7 +38,7 @@ const NavigationNonAuth = () =>
 <div className="collapse navbar-collapse" id="navbarResponsive">
     <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-            <Link className="link" to='/hikes'>Explore</Link>
+            <Link className="link" to='/HikesList'>Explore</Link>
         </li>
         <li className="nav-item">
             <Link className="link" to='/SignUp'>Sign Up</Link>
