@@ -18,18 +18,9 @@ const INITIAL_STATE = {
 
 
 class Tribes extends Component {
-    constructor(props){
+    constructor(props) {
+      super(props);
 
-        firebase.db.ref('tribes').on('child_added', snapshot => {
-            const tribe = snapshot.val();
-            tribe.key = snapshot.key;
-            console.log(tribe);
-            if(tribe.hike == this.props.hike){
-                this.setState({tribes: this.state.tribes.concat(tribe )});
-            }
-        });
-
-        super(props);
         this.state = {
             tribes: [],
             user: '',
@@ -37,14 +28,12 @@ class Tribes extends Component {
             date: '',
             time: '',
             error: null
-        }
+        };
 
-    };
+    }
 
 
     componentDidMount() {
-
-        console.log(this.state.tribes);
 
         firebase.auth.onAuthStateChanged(user => {
             if(user){
@@ -53,7 +42,17 @@ class Tribes extends Component {
                 console.log("please sign in");
             }
         });
-    }
+
+        firebase.db.ref('tribes').on('child_added', snapshot => {
+            const tribe = snapshot.val();
+            tribe.key = snapshot.key;
+            console.log(this.props.hike); 
+            if(tribe.hike == this.props.hike){
+                this.setState({tribes: this.state.tribes.concat(tribe )});
+            }
+            
+        });
+    };
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -63,7 +62,10 @@ class Tribes extends Component {
             time,
         } = this.state;
 
-        db.createTribeDB(tribeName,date,time,this.props.hike, this.state.user.uid)
+        console.log(this.props.hike);
+
+
+        db.createTribeDB(tribeName,date,time,this.props.hike.name, this.state.user.uid)
         .then(()=> {
             this.setState({...INITIAL_STATE});
             console.log("started a tribe");
@@ -103,6 +105,7 @@ class Tribes extends Component {
         return (
             <div className="container">
                 <h4>Find Tribes for this Trek:</h4>
+                <p>{this.props.hike.name}</p>
                 <div className="tribes">
                     <ul className="tribe-list">
                     {
@@ -114,8 +117,8 @@ class Tribes extends Component {
                 </div>
 
                 <form className="tribeForm" onSubmit={this.onSubmit}>
-                    <div class="form-group row">
-                        <div class="col-sm-10">
+                    <div className="form-group row">
+                        <div className="col-sm-10">
                             <input
                                 value={tribeName}
                                 onChange={(e)=> this.handleTribeNameChange(e)}
@@ -124,8 +127,8 @@ class Tribes extends Component {
                             />
                         </div>
                     </div>
-                    <div class="form-group row">
-                    <div class="col-sm-10">
+                    <div className="form-group row">
+                    <div className="col-sm-10">
                             <input
                                 value= {date}
                                 onChange={(e)=> this.handleDateChange(e)}
@@ -133,8 +136,8 @@ class Tribes extends Component {
                             />
                         </div>
                     </div>
-                    <div class="form-group row">
-                    <div class="col-sm-10">
+                    <div className="form-group row">
+                    <div className="col-sm-10">
                             <input
                                 value={time}
                                 onChange={(e)=> this.handleTimeChange(e)}

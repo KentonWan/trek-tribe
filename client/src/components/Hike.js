@@ -49,7 +49,7 @@ class Hike extends Component {
                 </div>
                 <div className="trek-tribes">
                     <Tribes 
-                        hike={this.state.hike.name}
+                        hike={this.state.hike}
                     />
                 </div>
             </div>
