@@ -46,7 +46,8 @@ class SignUpForm extends Component {
         auth.createUserWithEmailAndPassword(email, password)
         .then(authUser => {
             authUser.displayName = this.state.username;
-            db.createUserDB(authUser.user.uid, zipcode)
+            console.log(authUser);
+            db.createUserDB(authUser.user.uid, authUser.displayName, zipcode)
             .then(() => {
                 this.setState({...INITIAL_STATE});
                 history.push("/");

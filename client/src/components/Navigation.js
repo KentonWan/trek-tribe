@@ -8,7 +8,6 @@ import SignIn from './SignIn';
 import HikesList from './HikesList';
 
 
-
 const Navigation = ({ user }) => 
     <nav className="navbar navbar-expand-md fixed-top">
         <div className="container text-center">
@@ -25,6 +24,9 @@ const Navigation = ({ user }) =>
 const NavigationAuth = () => 
     <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+                <Link className="link" to='/Profile'>Profile</Link>
+            </li>
             <li className="nav-item">
                 <Link className="link" to='/HikesList'>Explore</Link>
             </li>

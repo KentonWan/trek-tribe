@@ -10,7 +10,9 @@ import SignOut from './components/SignOut.js';
 import Navigation from './components/Navigation.js';
 import HikesList from './components/HikesList.js';
 import Hike from './components/Hike.js';
+import Profile from './components/Profile.js';
 import Tribes from './components/Tribes.js';
+import Tribe from './components/Tribe.js';
 
 
 
@@ -64,7 +66,9 @@ class App extends Component {
           <Route path="/SignUp" component= { SignUp } />
           <Route path="/SignIn" component = { SignIn } />
           <Route path="/HikesList" component = { HikesList } />
-          <Route path="/hike/:id" component = { Hike } />
+          <Route path="/Profile" component = { Profile } />
+          <Route exact path="/hike/:id" component = { Hike } />
+          <Route exact path="/hike/:hikeID/tribes/:tribeID" component = { Tribe } />
         </div>
 
 

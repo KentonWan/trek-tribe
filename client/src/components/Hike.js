@@ -13,7 +13,7 @@ class Hike extends Component {
         super(props);
 
         this.state = {
-            hike: []
+            hike: "",
         };
     }
 
@@ -30,6 +30,7 @@ class Hike extends Component {
                     const hike = hikes.find(hike => {
                         return hike.id === parseInt(this.props.match.params.id);
                     })
+
                     this.setState({hike: hike});
                 })
             });
@@ -38,6 +39,7 @@ class Hike extends Component {
 
     render() {
         return (
+            !this.state.hike ? null : 
             <div className="container">
                 <div className="hike-info">
                     <h1>{this.state.hike.name}</h1>

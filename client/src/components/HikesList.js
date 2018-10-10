@@ -23,15 +23,18 @@ class HikesList extends Component {
         let hikes = [];
         
         firebase.auth.onAuthStateChanged(user => {
+            if(!user) {
+                window.alert("Please Sign Up or Sign In to see a List of Hikes")
+            } else {
             firebase.db.ref('users/' + user.uid + '/zipcode').once('value').then((snapshot) => {
                 userZipcode = snapshot.val();
-                console.log(userZipcode);
+
                 trailAPI.getByZip(userZipcode).then((results) => {
                     hikes = results.data.trails;
-                    console.log(hikes);
                     this.setState({hikes: hikes});
                 })
             });
+            }
           });
 
     }
