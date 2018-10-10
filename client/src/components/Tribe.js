@@ -33,7 +33,8 @@ class Tribe extends Component {
                 this.setState({chief: owner});
             })
         });
-
+        
+        // Populating list of tribe members
         firebase.db.ref('tribeMembers/' + this.props.match.params.tribeID).on('child_added', snapshot => {
             const tribeMemberUID = snapshot.val().uid;
 
