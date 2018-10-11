@@ -50,7 +50,8 @@ class Tribes extends Component {
             let currentDate = new Date();
 
             let tribeDate = new Date(tribe.date)
-
+            
+            // if tribe date already passed it will push it to past branch and delete it from upcoming branch
             if(tribeDate.getTime() < currentDate.getTime()){
 
                 db.addToPastTribes(tribe.key, this.props.hike.id, tribe.name, tribe.date, tribe.time, tribe.hike, tribe.owner)
