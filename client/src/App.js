@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import { Route,Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import { firebase } from './firebase';
 
 import Landing from './components/Landing.js';
 import SignUp from './components/SignUp.js';
 import SignIn from './components/SignIn.js';
-import SignOut from './components/SignOut.js';
 import Navigation from './components/Navigation.js';
 import HikesList from './components/HikesList.js';
 import Hike from './components/Hike.js';
 import Profile from './components/Profile.js';
-import Tribes from './components/Tribes.js';
 import Tribe from './components/Tribe.js';
 
 

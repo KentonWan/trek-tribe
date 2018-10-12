@@ -16,6 +16,11 @@ export const createTribeDB = (hikeId, name, date, hike, owner) =>
         owner: owner
     });
 
+export const addTribeName = (tribeID,tribeName) => 
+    db.ref(`tribeNames/${tribeID}`).set({
+        name: tribeName
+    });
+
 export const addToPastTribes = (tribeID,hikeId, name, date, time, hike, owner) => 
     db.ref(`tribes/${hikeId}/past/${tribeID}`).set({
         name: name,

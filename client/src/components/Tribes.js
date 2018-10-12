@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Link, Router } from 'react-router-dom';
-import { auth, db } from '../firebase';
+import { Link } from 'react-router-dom';
+import { db } from '../firebase';
 
-// import axios from 'axios';
 import { firebase } from '../firebase';
 
-import Tribe from './Tribe.js';
 
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value,
@@ -50,6 +48,7 @@ class Tribes extends Component {
             let currentDate = new Date();
 
             let tribeDate = new Date(tribe.date)
+
             
             // if tribe date already passed it will push it to past branch and delete it from upcoming branch
             if(tribeDate.getTime() < currentDate.getTime()){
@@ -64,6 +63,7 @@ class Tribes extends Component {
                 firebase.db.ref('tribes/' + this.props.hike.id + '/upcoming/' + tribe.key).remove();
 
             } else {
+                console.log("tribe in else",tribe)
                 this.setState({tribes: this.state.tribes.concat(tribe )});
             }
 
@@ -83,6 +83,7 @@ class Tribes extends Component {
         .then((res)=> {
             let tribeID = res.path.pieces_[3];
             db.createTribeChief(tribeID, this.state.user.uid).then(()=> console.log("chief created")).catch(error => console.log(error));
+            db.addTribeName(tribeID,tribeName).then(()=> console.log("tribe name added")).catch(error => console.log(error))
             
             this.setState({...INITIAL_STATE});
             console.log("started a tribe");
