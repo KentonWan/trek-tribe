@@ -4,6 +4,8 @@ import { db } from '../firebase';
 
 import { firebase } from '../firebase';
 
+import './Tribes.css';
+
 
 const byPropKey = (propertyName, value) => () => ({
     [propertyName]: value,
@@ -28,10 +30,12 @@ class Tribes extends Component {
             error: null
         };
 
+    this.ref = firebase.db.ref('tribes/' + this.props.hike.id + '/upcoming/');
     }
 
 
     componentDidMount() {
+
 
         firebase.auth.onAuthStateChanged(user => {
             if(user){
@@ -41,14 +45,13 @@ class Tribes extends Component {
             }
         });
 
-        firebase.db.ref('tribes/' + this.props.hike.id + '/upcoming/').on('child_added', snapshot => {
+        this.ref.on('child_added', snapshot => {
             const tribe = snapshot.val();
             tribe.key = snapshot.key;
 
             let currentDate = new Date();
 
             let tribeDate = new Date(tribe.date)
-
             
             // if tribe date already passed it will push it to past branch and delete it from upcoming branch
             if(tribeDate.getTime() < currentDate.getTime()){
@@ -63,11 +66,10 @@ class Tribes extends Component {
                 firebase.db.ref('tribes/' + this.props.hike.id + '/upcoming/' + tribe.key).remove();
 
             } else {
-                console.log("tribe in else",tribe)
-                this.setState({tribes: this.state.tribes.concat(tribe )});
-            }
-
-            
+                this.setState(prevState => ({
+                    tribes: [...prevState.tribes, tribe]
+                  }))            
+                }
         });
     };
 
@@ -101,7 +103,9 @@ class Tribes extends Component {
     
     handleDateTimeChange(e){
         e.preventDefault();
-        this.setState(byPropKey('dateTime', e.target.value));
+        let date = e.target.value;
+
+        this.setState(byPropKey('dateTime', date));
     }; 
     
     // handleTimeChange(e){
@@ -114,44 +118,46 @@ class Tribes extends Component {
 
     render() {
 
-        const {
-            tribeName,
-            dateTime,
-            error
-        } = this.state;
+        console.log(this.state.tribes);
+
+        // const tribeName dateTime, error
 
         return (
             <div className="container">
-                <h4>Find Tribes for this Trek:</h4>
+                <h4 className="tribes-header">Upcoming Trek Tribes:</h4>
                 <div className="tribes">
-                    <ul className="tribe-list">
                     {
                         this.state.tribes.map((tribe,index) =>
-                            <Link to={`/hike/${this.props.hike.id}/tribes/${tribe.key}`} key={index} className="tribe-link">
-                                <li value={tribe.key}>Tribe: {tribe.name}  Date: {tribe.date}</li>
-                            </Link>
+                            <p value={tribe.key} key={index}>
+                                <Link to={`/hike/${this.props.hike.id}/tribes/${tribe.key}`} className="tribe-link">
+                                    {tribe.name}
+                                </Link>
+                            </p>
                         )
                     }
-                    </ul>
                 </div>
-
+                
                 <form className="tribeForm" onSubmit={this.onSubmit}>
-                    <div className="form-group row">
-                        <div className="col-sm-10">
+                    <p><strong>Start Your Own Trek Tribe:</strong></p>
+                    <div className="form-row">
+                        <div className="form-group col-md-6 offset-md-3">
                             <input
-                                value={tribeName}
+                                // value={tribeName}
                                 onChange={(e)=> this.handleTribeNameChange(e)}
                                 type="text"
-                                placeholder="Tribe Name"
+                                placeholder="New Tribe Name"
+                                className="tribe-name"
                             />
                         </div>
+                        
                     </div>
-                    <div className="form-group row">
-                    <div className="col-sm-10" date-date-start-date="+1d">
+                    <div className="form-row">
+                        <div className="form-group col-md-6 offset-md-3">
                             <input
-                                value= {dateTime}
+                                // value= {dateTime}
                                 onChange={(e)=> this.handleDateTimeChange(e)}
                                 type="datetime-local"
+                                data-date-start-date="+1d"
                             />
                         </div>
                     </div>
@@ -165,8 +171,8 @@ class Tribes extends Component {
                             />
                         </div>
                     </div> */}
-                    <button type="submit"> Start Tribe</button>
-                    {error && <p>{error.message}</p>}
+                    <button type="submit" className="btn btn-success"> Start Tribe</button>
+                    {/* {error && <p>{error.message}</p>} */}
                 
                 </form>
 

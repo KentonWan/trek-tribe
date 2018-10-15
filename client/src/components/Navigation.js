@@ -6,6 +6,7 @@ import Landing from './Landing';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import HikesList from './HikesList';
+import './Navigation.css';
 
 
 const Navigation = ({ user }) => 

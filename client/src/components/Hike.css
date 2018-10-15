@@ -1,0 +1,11 @@
+.container {
+    text-align: center;
+}
+
+.hike-header {
+    font-weight: bold;
+    text-decoration: underline;
+}
+h4 {
+    margin: 10px;
+}

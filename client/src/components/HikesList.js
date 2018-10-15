@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { firebase } from '../firebase';
 
 
 import TrailAPI from '../externalAPIs/trailAPI.js';
+import "./HikesList.css";
 
 // import { auth, db } from '../firebase';
 
@@ -44,26 +45,29 @@ class HikesList extends Component {
         return (
 
             <div className="container">
-            <h1>Find Treks in Your Area</h1>
+            <h1>Treks in Your Area</h1>
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th className="col-md-3">Name</th>
-                            <th className="col-md-1">Distance(mi)</th>
-                            <th className="col-md-3">Location</th>
-                            <th className="col-md-5">Picture</th>
+                            <th className="name-header" >Name</th>
+                            <th className="distance-header"  >Distance(mi)</th>
+                            <th className="location-header" >Location</th>
+                            <th className="picture-header"  >Picture</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.hikes.map((hike,index) => 
-                            <Link to={`/hike/${hike.id}`} key={index} className="hike-link">
-                                <tr>
-                                    <td>{hike.name}</td>
-                                    <td>{hike.length}</td>
-                                    <td>{hike.location}</td>
-                                    <td><img src={hike.imgSmall} alt="small image of hike" /></td>
-                                </tr>
-                            </Link>
+                            <tr>
+                                
+                                        <td className="hike-link">
+                                            <NavLink to={`/hike/${hike.id}`} key={index} className="hike-link">
+                                                {hike.name}                                
+                                            </NavLink>
+                                        </td>
+                                        <td  >{hike.length}</td>
+                                        <td >{hike.location}</td>
+                                        <td ><img src={hike.imgSmall} alt="small image of hike" /></td>
+                            </tr>
                         )}
                     </tbody>
                 </table>

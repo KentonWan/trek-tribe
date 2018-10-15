@@ -7,6 +7,7 @@ import { firebase } from '../firebase';
 import TrailAPI from '../externalAPIs/trailAPI.js';
 
 import Tribes from './Tribes.js';
+import './Hike.css';
 
 class Hike extends Component {
     constructor(props){
@@ -42,16 +43,17 @@ class Hike extends Component {
             !this.state.hike ? null : 
             <div className="container">
                 <div className="hike-info">
-                    <h1>{this.state.hike.name}</h1>
+                    <h1 className="hike-header">{this.state.hike.name}</h1>
                     <img id="hike-image" src={this.state.hike.imgMedium} />
-                    <h3>Distance: {this.state.hike.length} miles</h3>
-                    <h3>Ascent: {this.state.hike.ascent} feet</h3>
-                    <h3>Location: {this.state.hike.location}</h3>
+                    <h4><strong>Distance:</strong> {this.state.hike.length} miles</h4>
+                    <h4><strong>Ascent:</strong> {this.state.hike.ascent} feet</h4>
+                    <h4><strong>Location:</strong> {this.state.hike.location}</h4>
                     <p>{this.state.hike.summary}</p>
                 </div>
                 <div className="trek-tribes">
                     <Tribes 
                         hike={this.state.hike}
+                        location={this.props.location}
                     />
                 </div>
             </div>

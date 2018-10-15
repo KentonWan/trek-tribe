@@ -1,0 +1,29 @@
+h3 {
+    font-weight: bold
+}
+
+.zipcode {
+    margin: 5px;
+}
+
+.tribes {
+    margin: 10px;
+}
+
+.tribes-leading {
+    margin: 0;
+    padding: 2px;
+}
+
+.tribes-member {
+    margin: 0;
+    padding: 2px;
+}
+
+.tribes-header {
+    font-weight: bold;
+}
+
+p {
+    margin: 5px;
+}

@@ -1,0 +1,32 @@
+.table {
+    width: 100%;
+    margin: 0px auto;
+}
+
+.hike-link {
+    text-decoration: none;
+    color: black;
+}
+
+a.hike-link:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+
+}
+
+.name-header {
+    width: 30%;
+}
+
+.distance-header {
+    width: 10%;
+}
+
+.location-header {
+    width: 15%;
+}
+
+picture-header {
+    width: 45%;
+}

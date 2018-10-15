@@ -9,8 +9,8 @@ const Landing = () => (
             <div className="container">
                 <h1 className="display-4">Welcome to Trek Tribe!</h1>
                 <p className="lead">A social network of hikers to explore the world together.</p>
-                <p className="lead">
-                <Link className="link-button" to='/SignUp'>Join!</Link>
+                <p>
+                <Link className="btn btn-success" to='/SignUp'>Join!</Link>
                 </p>
             </div>
         </div>

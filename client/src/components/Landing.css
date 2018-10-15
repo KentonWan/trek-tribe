@@ -5,7 +5,7 @@
 }
 
 .display-4 {
-    font-family: fantasy;
+    text-shadow: -2px 2px #101010;
 }
 
 .container .link-button {
@@ -15,6 +15,10 @@
     padding: 10px;
     border-radius: 10px;
 
+}
+
+.lead {
+    text-shadow: -1px 1px #101010;
 }
 
 .link-button:hover {

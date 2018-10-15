@@ -73,10 +73,10 @@ class SignInForm extends Component {
         const isInvalid = password === '' || email === '';
 
         return (
-            <div className="container col-md-4 col-md-offset-4">
+            <div className="container col-md-4 offset-md-4">
                 <form className="signInForm" onSubmit={this.onSubmit}>
                     <div class="form-group row">
-                        <div class="col-sm-10">
+                        <div class="col-sm-10 offset-sm-1">
                             <input
                                 value={email}
                                 onChange={(e)=> this.handleEmailChange(e)}
@@ -86,7 +86,7 @@ class SignInForm extends Component {
                         </div>
                     </div>
                     <div class="form-group row">
-                    <div class="col-sm-10">
+                    <div class="col-sm-10 offset-sm-1">
                             <input
                                 value={password}
                                 onChange={(e)=> this.handlePasswordChange(e)}
@@ -95,7 +95,7 @@ class SignInForm extends Component {
                             />
                         </div>
                     </div>
-                    <button disabled={isInvalid} type="submit"> Sign In</button>
+                    <button disabled={isInvalid} type="submit" className="btn btn-success"> Sign In</button>
                     {error && <p>{error.message}</p>}
                 
                 </form>

@@ -10,6 +10,8 @@ class Tribe extends Component {
         this.state = {
             currentUser: '',
             tribe: '',
+            date: '',
+            time: '',
             chief: '',
             tribeMembers: [],
             isMember: ''
@@ -42,6 +44,10 @@ class Tribe extends Component {
             let tribe = snapshot.val();
             console.log(tribe);
             this.setState({tribe: tribe});
+
+            let date = new Date(tribe.date);
+            this.setState({date: date.toDateString()})
+            this.setState({time: date.toLocaleTimeString()});
 
             // setting chief to owner
             firebase.db.ref('users/'+ tribe.owner).once('value').then((snapshot) => {
@@ -92,13 +98,14 @@ class Tribe extends Component {
     
 
     render() {
+
         return (
             <div className="container">
                 <h1>{this.state.tribe.name}</h1>
                 <div className="tribe-info">
                     <h4><strong>Hike:</strong> {this.state.tribe.hike}</h4>
-                    <h6><strong>Date:</strong> {this.state.tribe.date}</h6>
-                    <h6><strong>Time:</strong> {this.state.tribe.time}</h6>
+                    <h6><strong>Date:</strong> {this.state.date}</h6>
+                    <h6><strong>Time:</strong> {this.state.time}</h6>
                     <h6><strong>Tribe Chief:</strong> {this.state.chief}</h6>
                     <h6><strong>Tribe Members:</strong></h6>
                         <ul className="tribe-members">

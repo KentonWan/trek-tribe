@@ -1,0 +1,36 @@
+.container {
+    text-align: center;
+    margin-top: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.tribes-header {
+    font-weight: bold;
+}
+
+.tribe-link {
+    text-decoration: none;
+    color: black;
+}
+
+a.tribe-link:hover {
+
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+
+}
+
+.tribeForm {
+    text-align: center;
+}
+
+.tribe-name {
+    text-align: center;
+}
+
+.form-row {
+    margin: 0px;
+    padding: 0px;
+}

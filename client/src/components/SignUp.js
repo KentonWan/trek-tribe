@@ -4,7 +4,7 @@ import { auth, db } from '../firebase';
 
 const SignUpPage = ({history}) => 
     <div>
-        <h1>Join Now & Start Trekking</h1>
+        <h2>Join Now & Start Trekking</h2>
         <SignUpForm history={history} />
     </div>
 
@@ -93,10 +93,10 @@ class SignUpForm extends Component {
         } = this.state;
 
         return (
-            <div className="container col-md-4 col-md-offset-4">
+            <div className="container col-md-4 offset-md-4">
                 <form className="signUpForm" onSubmit={this.onSubmit}>
                     <div className="form-group row">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10 offset-sm-1">
                             <input
                                 value={username}
                                 onChange={(e)=> this.handleUsernameChange(e)}
@@ -106,7 +106,7 @@ class SignUpForm extends Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10 offset-sm-1">
                             <input
                                 value={email}
                                 onChange={(e)=> this.handleEmailChange(e)}
@@ -116,7 +116,7 @@ class SignUpForm extends Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10 offset-sm-1">
                             <input
                                 value={zipcode}
                                 onChange={(e)=> this.handleZipcodeChange(e)}
@@ -126,7 +126,7 @@ class SignUpForm extends Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                    <div className="col-sm-10">
+                    <div className="col-sm-10 offset-sm-1">
                             <input
                                 value={password}
                                 onChange={(e)=> this.handlePasswordChange(e)}
@@ -135,7 +135,7 @@ class SignUpForm extends Component {
                             />
                         </div>
                     </div>
-                    <button type="submit"> Sign Up</button>
+                    <button type="submit" className="btn btn-success"> Sign Up</button>
                     {error && <p>{error.message}</p>}
                 
                 </form>
@@ -148,7 +148,7 @@ const SignUpLink = () =>
     <p>
         Don't have an account?
         {' '}
-        <Link to="/SignUp">Sign Up</Link>
+        <Link to="/SignUp" style={{color: "green"}}>Sign Up</Link>
     </p>
 
 export default withRouter(SignUpPage);

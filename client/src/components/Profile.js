@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { firebase } from '../firebase';
+import "./Profile.css";
 
 
 class Profile extends Component {
@@ -84,37 +85,33 @@ class Profile extends Component {
             (!this.state.user) ? null :
             <div className="container">
                 <h3>{this.state.username}'s Profile Page</h3>
-                <p>Email: {this.state.user.email}</p>
-                <p>Zipcode: {this.state.zipcode}</p>
+                <p><strong>Email:</strong> {this.state.user.email}</p>
+                <p><strong>Zipcode:</strong> {this.state.zipcode}</p>
                 <form className="zipcodeForm" onSubmit={this.onSubmit}>
-                    <div className="form-group row">
-                    <div className="col-sm-10">
                             <input
+                                className="zipcode"
                                 value={updatedZipcode}
                                 onChange={(e)=> this.handleZipcodeChange(e)}
                                 type="text"
                                 placeholder="Update Zipcode"
                             />
-                            <button type="submit"> Submit</button>
-                    </div>
-                    </div>
+                            <button type="submit" className="btn-info"> Submit</button>
                 </form>
-                <h5>Tribes I'm Leading:</h5>
-                    <ul className="tribes-leading">
+                <div className="tribes">
+                    <h5 className="tribes-header">Tribes I'm Leading:</h5>
                         {
                             this.state.tribesLeading.map((tribe,index) =>
-                                    <li key={index}>{tribe}</li>
+                                    <p className="tribes-leading text-center" key={index}>{tribe}</p>
                             )
                         }
-                    </ul>
-                <h5>Tribes I'm a member of:</h5>
-                    <ul className="tribes-member">
-                        {
-                            this.state.tribesMember.map((tribe,index) =>
-                                    <li key={index}>{tribe}</li>
-                            )
-                        }
-                    </ul>
+                    <h5 className="tribes-header">Tribes I'm a member of:</h5>
+                            {
+                                this.state.tribesMember.map((tribe,index) =>
+                                        <p className="tribes-member" key={index}>{tribe}</p>
+                                )
+                            }
+                </div>
+                
             </div>
         )
     }
