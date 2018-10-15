@@ -35,9 +35,9 @@ class App extends Component {
       : this.setState({ user: null, userId: null});
     })
 
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
+    // this.callApi()
+    //   .then(res => this.setState({ response: res.express }))
+    //   .catch(err => console.log(err));
   }
 
   callApi = async () => {
